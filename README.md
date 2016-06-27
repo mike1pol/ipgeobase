@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/ipgeobase.svg)](https://badge.fury.io/js/ipgeobase)
+[![Dependency Status](https://david-dm.org/mike1pol/ipgeobase.svg)](https://david-dm.org/mike1pol/ipgeobase)
 # IP Geo base package for http://ipgeobase.ru
 
 ### Dependencies
