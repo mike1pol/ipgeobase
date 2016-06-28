@@ -10,8 +10,9 @@
 `$ npm i ipgeobase`
 
 # Usage
+[Examples](https://github.com/mike1pol/ipgeobase/example/index.js)
 ```
-const IpGeoBase = new require('ipgeobase');
+const IpGeoBase = require('ipgeobase');
 const geoBase = new IpGeoBase();
 geoBase.getInfo('IP Address')
     .then(ip => {

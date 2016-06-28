@@ -1,6 +1,6 @@
 {
   "name": "ipgeobase",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "IP Geo base http://ipgeobase.ru",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/mike1pol/ipgeobase#readme",
   "dependencies": {
-    "iconv-lite": "^0.4.13",
-    "xml2json": "^0.9.1"
+    "iconv-lite": "^0.4.13"
   }
 }

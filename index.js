@@ -1,8 +1,7 @@
-"use strict"
+'use strict';
 
 const iconv = require('iconv-lite');
 const http = require('http');
-const parser = require('xml2json');
 
 class IpGeoBase {
     constructor(codePage) {
@@ -10,14 +9,38 @@ class IpGeoBase {
     }
 
     parseXML(data) {
-        return parser.toJson(data, {
-            object: true,
-            reversible: false,
-            coerce: false,
-            sanitize: true,
-            trim: true,
-            arrayNotation: false
-        })['ip-answer']['ip'];
+        const re = /<ip\svalue="(.+)"><inetnum>(.+)<\/inetnum><country>(.+)<\/country>(<city>(.+)<\/city><region>(.+)<\/region><district>(.+)<\/district><lat>(.+)<\/lat><lng>(.+)<\/lng><\/ip>|<\/ip>)/ig;
+        const reE = /not\sfound/ig;
+        const ip = {};
+        data = data.replace(/<\?xml.+\n<ip-answer>\n(.+)\n<\/ip-answer>/, "$1");
+        if (reE.test(data)) {
+            throw {
+                message: 'not found'
+            }
+        }
+        data = re.exec(data);
+        if (data && data.length > 0) {
+            data.forEach((d, i) => {
+                if (i === 1) {
+                    ip.ip = d;
+                } else if (i === 2) {
+                    ip.inetnum = d;
+                } else if (i === 3) {
+                    ip.country = d;
+                } else if (i === 5 && d) {
+                    ip.city = d;
+                } else if (i === 6 && d) {
+                    ip.region = d;
+                } else if (i === 7 && d) {
+                    ip.district = d;
+                } else if (i === 8 && d) {
+                    ip.lat = d;
+                } else if (i === 9 && d) {
+                    ip.lng = d;
+                }
+            });
+        }
+        return ip;
     }
 
     getInfo(ip, codePage) {
@@ -49,4 +72,4 @@ class IpGeoBase {
     }
 }
 
-module.export = IpGeoBase;
+module.exports = IpGeoBase;
