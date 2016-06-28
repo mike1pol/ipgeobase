@@ -4,13 +4,12 @@
 
 ### Dependencies
 * iconv-lite
-* xml2json
 
 # Installation
 `$ npm i ipgeobase`
 
 # Usage
-[Examples](https://github.com/mike1pol/ipgeobase/example/index.js)
+[Examples](https://github.com/mike1pol/ipgeobase/blob/master/README.md)
 ```
 const IpGeoBase = require('ipgeobase');
 const geoBase = new IpGeoBase();
